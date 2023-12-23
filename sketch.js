@@ -21,6 +21,9 @@ function setup(){
   ground = createSprite(300,180,600,20);
   ground.addImage("ground",groundImage);
   ground.velocityX = -5;
+
+  invisGround = createSprite(300,190,600,10);
+  invisGround.visible=false;
 }
 
 
@@ -32,17 +35,17 @@ function draw(){
   console.log(trex.y)
   
   //jump when space key is pressed
-  if(keyDown("space")){
+  if(keyDown("space") && trex.y >=150){
     trex.velocityY = -10;
   }
   
-  trex.velocityY = trex.velocityY + 0.5;
+  trex.velocityY = trex.velocityY + 1;
 
   if (ground.x <= 0){
     ground.x = ground.width/2;
   }
   
   //stop trex from falling down
-  trex.collide(ground);
+  trex.collide(invisGround);
   drawSprites();
 }
